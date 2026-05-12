@@ -1,0 +1,15 @@
+.codex/
+docs/
+/data/
+
+scripts/
+configs/
+outputs/
+tests/
+
+314561002_HW3_report.tex
+
+__pycache__/
+*.pyc
+
+src/models/**/README.md
