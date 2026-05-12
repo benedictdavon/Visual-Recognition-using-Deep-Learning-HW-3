@@ -4,6 +4,8 @@ Instance segmentation system for **Visual Recognition using Deep Learning HW3**.
 
 The task is to segment individual cell instances from colored medical TIFF images. The final solution uses an MMDetection Mask R-CNN-family pipeline with tile-based training, tile-based inference, Cascade Mask R-CNN, EMA checkpoints, and weighted box fusion.
 
+**Student ID: 314561002**
+
 ## Introduction
 
 This repository contains the full code pipeline for HW3 instance segmentation on colored medical images.
