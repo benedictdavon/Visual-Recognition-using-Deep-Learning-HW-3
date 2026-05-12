@@ -1,0 +1,51 @@
+{
+  "_base_": [
+    "./exp020_mmdet_cascade_maskrcnn_r50_tile_train_tile_infer.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-034",
+    "name": "exp025_rtm_det_mask_head_tile_pipeline"
+  },
+  "model": {
+    "family": "mmdet_rtmdet_mask_head",
+    "name": "rtmdet_ins_tile_pipeline",
+    "model_size": "tiny",
+    "assigner_topk": 6,
+    "num_classes": 4,
+    "pretrained_detector_checkpoint": null
+  },
+  "augmentation": {
+    "train": {
+      "scale": [768, 768]
+    },
+    "test": {
+      "scale": [768, 768]
+    }
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp025_rtm_det_mask_head_tile_pipeline",
+    "train_batch_size": 1,
+    "accumulative_counts": 2,
+    "num_workers": 1,
+    "disable_validation": true,
+    "checkpoint": {
+      "interval": 1,
+      "save_begin": 1,
+      "save_last": true,
+      "max_keep_ckpts": -1,
+      "save_best": null
+    }
+  },
+  "optimizer": {
+    "type": "AdamW",
+    "lr": 0.00025,
+    "momentum": 0.9,
+    "weight_decay": 0.05
+  },
+  "schedule": {
+    "warmup_iters": 1000,
+    "warmup_start_factor": 0.00001,
+    "milestones": [16, 22],
+    "gamma": 0.1
+  }
+}

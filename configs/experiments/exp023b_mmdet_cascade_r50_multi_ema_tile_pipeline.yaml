@@ -1,0 +1,44 @@
+{
+  "_base_": [
+    "./exp020_mmdet_cascade_maskrcnn_r50_tile_train_tile_infer.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-035B",
+    "name": "exp023b_cascade_r50_multi_ema_tile_pipeline"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp023b_cascade_r50_multi_ema_tile_pipeline",
+    "train_batch_size": 1,
+    "accumulative_counts": 2,
+    "num_workers": 1,
+    "disable_validation": true,
+    "checkpoint": {
+      "interval": 2,
+      "save_begin": 4,
+      "save_last": true,
+      "max_keep_ckpts": -1,
+      "save_best": null
+    }
+  },
+  "custom_imports": {
+    "imports": ["src.training.multi_ema_hook"],
+    "allow_failed_imports": false
+  },
+  "custom_hooks": [
+    {
+      "type": "MultiEMAHook",
+      "momentums": [0.001, 0.0005, 0.00025],
+      "names": ["ema001", "ema0005", "ema00025"],
+      "interval": 1,
+      "begin_iter": 0,
+      "update_buffers": false,
+      "device": null,
+      "save_deploy": true,
+      "save_interval": 2,
+      "save_begin": 4,
+      "save_last": true,
+      "out_dir": "ema_checkpoints",
+      "save_in_main_checkpoint": false
+    }
+  ]
+}

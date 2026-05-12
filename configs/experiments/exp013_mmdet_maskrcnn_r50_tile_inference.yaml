@@ -1,0 +1,36 @@
+{
+  "_base_": [
+    "./exp011_mmdet_maskrcnn_r50_class_balanced.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-020",
+    "name": "exp013_r50_tile_inference"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp013_r50_tile_inference"
+  },
+  "inference": {
+    "postprocess": {
+      "score_thr": 0.03,
+      "max_per_img": 1000,
+      "nms": {
+        "type": "nms",
+        "iou_threshold": 0.5
+      }
+    },
+    "sweep": {
+      "max_runs": 2,
+      "score_thr_values": [0.03],
+      "max_per_img_values": [500, 1000],
+      "nms_iou_threshold_values": [0.5]
+    },
+    "tiled": {
+      "enabled": true,
+      "tile_size": 768,
+      "overlap": 0.25,
+      "min_tile_coverage": 0.0,
+      "tile_batch_size": 1,
+      "drop_border_predictions": false
+    }
+  }
+}

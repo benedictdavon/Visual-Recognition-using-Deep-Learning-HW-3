@@ -1,0 +1,33 @@
+{
+  "_base_": [
+    "./exp032_mmdet_cascade_maskrcnn_convnext_t_tile_pipeline.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-040A",
+    "name": "exp032a_cascade_maskrcnn_convnext_t_single_ema_tile_pipeline"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp032a_cascade_maskrcnn_convnext_t_single_ema_tile_pipeline",
+    "train_batch_size": 1,
+    "accumulative_counts": 2,
+    "num_workers": 1,
+    "disable_validation": true,
+    "checkpoint": {
+      "interval": 1,
+      "save_begin": 1,
+      "save_last": true,
+      "max_keep_ckpts": -1,
+      "save_best": null
+    }
+  },
+  "custom_hooks": [
+    {
+      "type": "EMAHook",
+      "ema_type": "ExponentialMovingAverage",
+      "momentum": 0.001,
+      "interval": 1,
+      "begin_iter": 0,
+      "update_buffers": false
+    }
+  ]
+}

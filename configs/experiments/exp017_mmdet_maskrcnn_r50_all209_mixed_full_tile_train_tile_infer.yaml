@@ -1,0 +1,39 @@
+{
+  "_base_": [
+    "./exp015_mmdet_maskrcnn_r50_tiled_train_tile_infer.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-025",
+    "name": "exp017_r50_all209_mixed_full_tile_train_tile_infer"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp017_r50_all209_mixed_full_tile_train_tile_infer",
+    "disable_validation": true,
+    "checkpoint": {
+      "interval": 1,
+      "save_begin": 13,
+      "save_last": true,
+      "max_keep_ckpts": 12,
+      "save_best": null
+    }
+  },
+  "dataset": {
+    "use_all_train_for_training": true,
+    "train_mix": {
+      "enabled": true,
+      "type": "ConcatDataset"
+    },
+    "train_tiled": {
+      "enabled": true,
+      "tile_size": 768,
+      "overlap": 0.0,
+      "min_tile_coverage": 0.0,
+      "drop_empty_tiles": true,
+      "min_visible_fraction": 0.5,
+      "min_gt_area": 1.0,
+      "force_rebuild": false,
+      "dataset_label": "all_train",
+      "output_root": "data/interim/tiled_train/all_train_tile768x768_ov0"
+    }
+  }
+}

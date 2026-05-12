@@ -1,0 +1,24 @@
+{
+  "_base_": [
+    "exp001_mmdet_maskrcnn_r50.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-007",
+    "name": "exp002_mmdet_maskrcnn_r50_multiscale"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp002_mmdet_maskrcnn_r50_multiscale"
+  },
+  "augmentation": {
+    "train": {
+      "scale": [
+        [1400, 840],
+        [1600, 960],
+        [1800, 1080]
+      ]
+    },
+    "test": {
+      "scale": [1600, 960]
+    }
+  }
+}

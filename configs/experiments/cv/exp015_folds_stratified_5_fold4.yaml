@@ -1,0 +1,37 @@
+{
+  "_base_": [
+    "../exp015_mmdet_maskrcnn_r50_tiled_train_tile_infer.yaml"
+  ],
+  "experiment": {
+    "id": "CV-EXP015-F4",
+    "name": "cv_exp015_folds_stratified_5_fold4"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/cv/cv_exp015_folds_stratified_5_fold4",
+    "disable_validation": false,
+    "checkpoint": {
+      "interval": 24,
+      "save_begin": 0,
+      "save_last": true,
+      "max_keep_ckpts": 1,
+      "save_best": "coco/segm_mAP_50",
+      "rule": "greater"
+    }
+  },
+  "dataset": {
+    "folds_json": "data/interim/folds/folds_stratified_5.json",
+    "dev_fold_index": 4,
+    "use_all_train_for_training": false,
+    "train_tiled": {
+      "enabled": true,
+      "tile_size": 768,
+      "overlap": 0.0,
+      "min_tile_coverage": 0.0,
+      "drop_empty_tiles": true,
+      "min_visible_fraction": 0.5,
+      "min_gt_area": 1.0,
+      "force_rebuild": false,
+      "output_root": "data/interim/tiled_train/folds_stratified_5_fold4_tile768x768_ov0"
+    }
+  }
+}

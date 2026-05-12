@@ -1,0 +1,28 @@
+{
+  "_base_": [
+    "./exp015_mmdet_maskrcnn_r50_tiled_train_tile_infer.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-029",
+    "name": "exp020_cascade_maskrcnn_r50_tile_train_tile_infer"
+  },
+  "model": {
+    "family": "mmdet_cascade_mask_rcnn_r50_fpn",
+    "name": "cascade_mask_rcnn_r50_fpn",
+    "num_classes": 4,
+    "pretrained_detector_checkpoint": "https://download.openmmlab.com/mmdetection/v2.0/cascade_rcnn/cascade_mask_rcnn_r50_fpn_1x_coco/cascade_mask_rcnn_r50_fpn_1x_coco_20200203-9d4dcb24.pth"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp020_cascade_maskrcnn_r50_tile_train_tile_infer",
+    "train_batch_size": 1,
+    "accumulative_counts": 2,
+    "num_workers": 1,
+    "disable_validation": true,
+    "checkpoint": {
+      "interval": 2,
+      "save_begin": 4,
+      "save_last": true,
+      "max_keep_ckpts": -1
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "_base_": [
+    "../base/dataset.yaml",
+    "../base/runtime.yaml",
+    "../base/augmentation.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-002",
+    "name": "exp001_mmdet_maskrcnn_r50"
+  },
+  "model": {
+    "family": "mmdet_mask_rcnn_r50_fpn",
+    "num_classes": 4,
+    "pretrained": "torchvision://resnet50"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp001_mmdet_maskrcnn_r50",
+    "max_epochs": 24,
+    "log_interval": 10,
+    "checkpoint_interval": 2
+  },
+  "optimizer": {
+    "lr": 0.0025,
+    "momentum": 0.9,
+    "weight_decay": 0.0001
+  },
+  "schedule": {
+    "warmup_iters": 100,
+    "warmup_start_factor": 0.001,
+    "milestones": [16, 22],
+    "gamma": 0.1
+  },
+  "inference": {
+    "postprocess": {
+      "score_thr": 0.05,
+      "max_per_img": 100,
+      "nms": {
+        "type": "nms",
+        "iou_threshold": 0.5
+      }
+    },
+    "sweep": {
+      "max_runs": 4,
+      "score_thr_values": [],
+      "max_per_img_values": [100, 150, 200, 300],
+      "nms_iou_threshold_values": []
+    }
+  }
+}

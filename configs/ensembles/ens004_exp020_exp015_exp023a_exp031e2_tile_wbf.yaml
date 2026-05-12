@@ -1,0 +1,35 @@
+{
+  "_base_": [
+    "./ens004_exp020_exp015_exp023a_exp031_tile_wbf.yaml"
+  ],
+  "members": [
+    {
+      "name": "exp020_cascade_epoch8",
+      "experiment": "configs/experiments/exp020_mmdet_cascade_maskrcnn_r50_tile_train_tile_infer.yaml",
+      "checkpoint": "outputs/runs/exp020_cascade_maskrcnn_r50_tile_train_tile_infer/epoch_8.pth",
+      "weight": 1.0,
+      "prediction_tag": "exp020e8"
+    },
+    {
+      "name": "exp015_maskrcnn_epoch21",
+      "experiment": "configs/experiments/exp015_mmdet_maskrcnn_r50_tiled_train_tile_infer.yaml",
+      "checkpoint": "outputs/runs/exp015_r50_tiled_training_tile_inference/best_coco_segm_mAP_50_epoch_21.pth",
+      "weight": 1.0,
+      "prediction_tag": "exp015e21"
+    },
+    {
+      "name": "exp023a_ema_epoch10",
+      "experiment": "configs/experiments/exp023a_mmdet_cascade_r50_single_ema_tile_pipeline.yaml",
+      "checkpoint": "outputs/runs/exp023a_cascade_r50_single_ema_tile_pipeline/epoch_10.pth",
+      "weight": 0.75,
+      "prediction_tag": "exp023ae10"
+    },
+    {
+      "name": "exp031_pl001_student_epoch2",
+      "experiment": "configs/experiments/exp031_mmdet_cascade_r50_fold0_plus_pl001_tile_finetune.yaml",
+      "checkpoint": "outputs/runs/exp031_cascade_r50_fold0_plus_pl001_tile_finetune/epoch_2.pth",
+      "weight": 0.10,
+      "prediction_tag": "exp031e2"
+    }
+  ]
+}

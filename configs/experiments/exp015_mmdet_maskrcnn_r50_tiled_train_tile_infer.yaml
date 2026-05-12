@@ -1,0 +1,48 @@
+{
+  "_base_": [
+    "./exp001_mmdet_maskrcnn_r50.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-024",
+    "name": "exp015_r50_tiled_training_tile_inference"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp015_r50_tiled_training_tile_inference"
+  },
+  "dataset": {
+    "train_tiled": {
+      "enabled": true,
+      "tile_size": 768,
+      "overlap": 0.0,
+      "min_tile_coverage": 0.0,
+      "drop_empty_tiles": true,
+      "min_visible_fraction": 0.5,
+      "min_gt_area": 1.0,
+      "force_rebuild": false
+    }
+  },
+  "inference": {
+    "postprocess": {
+      "score_thr": 0.03,
+      "max_per_img": 1000,
+      "nms": {
+        "type": "nms",
+        "iou_threshold": 0.5
+      }
+    },
+    "sweep": {
+      "max_runs": 1,
+      "score_thr_values": [0.03],
+      "max_per_img_values": [1000],
+      "nms_iou_threshold_values": [0.5]
+    },
+    "tiled": {
+      "enabled": true,
+      "tile_size": 768,
+      "overlap": 0.25,
+      "min_tile_coverage": 0.0,
+      "tile_batch_size": 1,
+      "drop_border_predictions": false
+    }
+  }
+}

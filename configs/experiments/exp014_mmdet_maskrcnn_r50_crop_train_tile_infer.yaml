@@ -1,0 +1,54 @@
+{
+  "_base_": [
+    "./exp001_mmdet_maskrcnn_r50.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-022",
+    "name": "exp014_r50_crop_training_tile_inference"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp014_r50_crop_training_tile_inference"
+  },
+  "augmentation": {
+    "train": {
+      "crop": {
+        "enabled": true,
+        "crop_type": "absolute",
+        "size": 768,
+        "allow_negative_crop": false,
+        "bbox_clip_border": true,
+        "recompute_bbox": true,
+        "filter_annotations": {
+          "enabled": true,
+          "min_gt_bbox_wh": [0.01, 0.01],
+          "by_mask": true,
+          "keep_empty": false
+        }
+      }
+    }
+  },
+  "inference": {
+    "postprocess": {
+      "score_thr": 0.03,
+      "max_per_img": 1000,
+      "nms": {
+        "type": "nms",
+        "iou_threshold": 0.5
+      }
+    },
+    "sweep": {
+      "max_runs": 1,
+      "score_thr_values": [0.03],
+      "max_per_img_values": [1000],
+      "nms_iou_threshold_values": [0.5]
+    },
+    "tiled": {
+      "enabled": true,
+      "tile_size": 768,
+      "overlap": 0.25,
+      "min_tile_coverage": 0.0,
+      "tile_batch_size": 1,
+      "drop_border_predictions": false
+    }
+  }
+}

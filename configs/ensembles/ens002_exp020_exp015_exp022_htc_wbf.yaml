@@ -1,0 +1,54 @@
+{
+  "_base_": [
+    "../base/dataset.yaml",
+    "../base/runtime.yaml"
+  ],
+  "template_only": true,
+  "notes": {
+    "status": "legacy_exp022_htc_template",
+    "reason": "This file stages the older exp022 HTC third-member idea. The ensemble runner now supports 2+ members, but exp022 underperformed locally; use configs/ensembles/ens002_exp023a_exp015_tile_wbf.yaml for the current requested ens002."
+  },
+  "ensemble": {
+    "name": "ens002_exp020_exp015_exp022_htc_wbf",
+    "method": "wbf_or_cluster_nms",
+    "class_aware": true,
+    "iou_thr_values": [0.6],
+    "skip_box_thr": 0.03,
+    "final_max_per_img": 1000,
+    "min_votes": 1,
+    "keep_mask": "highest_score"
+  },
+  "members": [
+    {
+      "name": "exp020_cascade_epoch8",
+      "experiment": "configs/experiments/exp020_mmdet_cascade_maskrcnn_r50_tile_train_tile_infer.yaml",
+      "checkpoint": "outputs/runs/exp020_cascade_maskrcnn_r50_tile_train_tile_infer/epoch_8.pth",
+      "weight": 1.0,
+      "prediction_tag": "exp020e8"
+    },
+    {
+      "name": "exp015_maskrcnn_epoch21",
+      "experiment": "configs/experiments/exp015_mmdet_maskrcnn_r50_tiled_train_tile_infer.yaml",
+      "checkpoint": "outputs/runs/exp015_r50_tiled_training_tile_inference/best_coco_segm_mAP_50_epoch_21.pth",
+      "weight": 1.0,
+      "prediction_tag": "exp015e21"
+    },
+    {
+      "name": "exp022_htc_epoch8_placeholder",
+      "experiment": "configs/experiments/exp022_mmdet_htc_r50_tile_train_tile_infer.yaml",
+      "checkpoint": "outputs/runs/exp022_htc_r50_tile_train_tile_infer/epoch_8.pth",
+      "weight": 1.0,
+      "prediction_tag": "exp022e8"
+    }
+  ],
+  "runtime": {
+    "work_dir": "outputs/runs/ensembles/ens002_exp020_exp015_exp022_htc_wbf"
+  },
+  "inference": {
+    "tile_size": 768,
+    "tile_overlap": 0.25,
+    "score_thr": 0.03,
+    "max_per_img": 1000,
+    "nms_iou_threshold": 0.5
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "_base_": [
+    "./exp001_mmdet_maskrcnn_r50.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-014",
+    "name": "exp011_r50_class_balanced"
+  },
+  "dataset": {
+    "train_wrapper": {
+      "type": "ClassBalancedDataset",
+      "oversample_thr": 0.3
+    }
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp011_r50_class_balanced",
+    "val_interval": 5
+  },
+  "inference": {
+    "postprocess": {
+      "score_thr": 0.03,
+      "max_per_img": 300,
+      "nms": {
+        "type": "nms",
+        "iou_threshold": 0.5
+      }
+    },
+    "sweep": {
+      "max_runs": 2,
+      "score_thr_values": [0.03, 0.05],
+      "max_per_img_values": [300],
+      "nms_iou_threshold_values": [0.5]
+    }
+  }
+}

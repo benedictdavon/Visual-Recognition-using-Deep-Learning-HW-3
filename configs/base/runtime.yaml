@@ -1,0 +1,49 @@
+{
+  "runtime": {
+    "seed": 20260423,
+    "launcher": "none",
+    "train_batch_size": 2,
+    "val_batch_size": 1,
+    "num_workers": 2,
+    "persistent_workers": false,
+    "max_epochs": 32,
+    "val_interval": 1,
+    "checkpoint_interval": 1,
+    "log_interval": 1,
+    "auto_scale_base_batch_size": 16
+  },
+  "inference": {
+    "postprocess": {
+      "score_thr": 0.03,
+      "max_per_img": 1000,
+      "nms": {
+        "type": "nms",
+        "iou_threshold": 0.5
+      }
+    },
+    "sweep": {
+      "max_runs": 12,
+      "score_thr_values": [],
+      "max_per_img_values": [],
+      "nms_iou_threshold_values": []
+    },
+    "tiled": {
+      "enabled": false,
+      "tile_size": 768,
+      "overlap": 0.25,
+      "min_tile_coverage": 0.0,
+      "tile_batch_size": 1,
+      "drop_border_predictions": false,
+      "context_pixels": 0,
+      "padded": {
+        "enabled": false,
+        "context_size": 1024,
+        "valid_size": 768,
+        "keep_policy": "bbox_center",
+        "pad_mode": "constant",
+        "pad_value": 0,
+        "output_suffix": "pad1024_valid768"
+      }
+    }
+  }
+}

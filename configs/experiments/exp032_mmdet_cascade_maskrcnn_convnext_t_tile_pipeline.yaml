@@ -1,0 +1,29 @@
+{
+  "_base_": [
+    "./exp020_mmdet_cascade_maskrcnn_r50_tile_train_tile_infer.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-040",
+    "name": "exp032_cascade_maskrcnn_convnext_t_tile_pipeline"
+  },
+  "model": {
+    "family": "mmdet_cascade_mask_rcnn_convnext_t",
+    "name": "cascade_mask_rcnn_convnext_t_fpn",
+    "num_classes": 4,
+    "pretrained": "https://download.openmmlab.com/mmclassification/v0/convnext/downstream/convnext-tiny_3rdparty_32xb128-noema_in1k_20220301-795e9634.pth"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp032_cascade_maskrcnn_convnext_t_tile_pipeline",
+    "train_batch_size": 1,
+    "accumulative_counts": 2,
+    "num_workers": 1,
+    "disable_validation": true,
+    "checkpoint": {
+      "interval": 1,
+      "save_begin": 1,
+      "save_last": true,
+      "max_keep_ckpts": -1,
+      "save_best": null
+    }
+  }
+}

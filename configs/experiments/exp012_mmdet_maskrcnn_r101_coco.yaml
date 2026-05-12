@@ -1,0 +1,38 @@
+{
+  "_base_": [
+    "./exp001_mmdet_maskrcnn_r50.yaml"
+  ],
+  "framework": "mmdetection",
+  "experiment": {
+    "id": "EXP-016",
+    "name": "exp012_mmdet_maskrcnn_r101_coco"
+  },
+  "model": {
+    "name": "mask_rcnn_r101_fpn",
+    "family": "mmdet_mask_rcnn_r101_fpn_coco",
+    "num_classes": 4,
+    "pretrained_detector_checkpoint": "https://download.openmmlab.com/mmdetection/v2.0/mask_rcnn/mask_rcnn_r101_fpn_1x_coco/mask_rcnn_r101_fpn_1x_coco_20200204-1efe0ed5.pth"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp012_mmdet_maskrcnn_r101_coco",
+    "max_epochs": 24,
+    "log_interval": 10,
+    "checkpoint_interval": 2
+  },
+  "inference": {
+    "postprocess": {
+      "score_thr": 0.03,
+      "max_per_img": 300,
+      "nms": {
+        "type": "nms",
+        "iou_threshold": 0.5
+      }
+    },
+    "sweep": {
+      "max_runs": 2,
+      "score_thr_values": [0.03, 0.05],
+      "max_per_img_values": [300],
+      "nms_iou_threshold_values": [0.5]
+    }
+  }
+}

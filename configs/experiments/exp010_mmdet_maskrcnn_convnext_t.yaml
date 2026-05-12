@@ -1,0 +1,49 @@
+{
+  "_base_": [
+    "../base/dataset.yaml",
+    "../base/runtime.yaml",
+    "../base/augmentation.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-010",
+    "name": "exp010_convnext_t_single_scale"
+  },
+  "model": {
+    "family": "mmdet_mask_rcnn_convnext_t_fpn",
+    "num_classes": 4,
+    "pretrained": "https://download.openmmlab.com/mmclassification/v0/convnext/downstream/convnext-tiny_3rdparty_32xb128-noema_in1k_20220301-795e9634.pth"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp010_convnext_t_single_scale",
+    "max_epochs": 24,
+    "log_interval": 10,
+    "checkpoint_interval": 2
+  },
+  "optimizer": {
+    "lr": 0.0025,
+    "momentum": 0.9,
+    "weight_decay": 0.0001
+  },
+  "schedule": {
+    "warmup_iters": 100,
+    "warmup_start_factor": 0.001,
+    "milestones": [16, 22],
+    "gamma": 0.1
+  },
+  "inference": {
+    "postprocess": {
+      "score_thr": 0.03,
+      "max_per_img": 300,
+      "nms": {
+        "type": "nms",
+        "iou_threshold": 0.5
+      }
+    },
+    "sweep": {
+      "max_runs": 2,
+      "score_thr_values": [0.03, 0.05],
+      "max_per_img_values": [300],
+      "nms_iou_threshold_values": [0.5]
+    }
+  }
+}

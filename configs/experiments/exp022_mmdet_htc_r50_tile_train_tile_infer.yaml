@@ -1,0 +1,25 @@
+{
+  "_base_": [
+    "./exp020_mmdet_cascade_maskrcnn_r50_tile_train_tile_infer.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-033",
+    "name": "exp022_htc_r50_tile_train_tile_infer"
+  },
+  "model": {
+    "family": "mmdet_htc_r50_fpn",
+    "name": "htc_r50_fpn",
+    "num_classes": 4,
+    "pretrained_detector_checkpoint": "https://download.openmmlab.com/mmdetection/v2.0/htc/htc_r50_fpn_1x_coco/htc_r50_fpn_1x_coco_20200317-7332cf16.pth"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp022_htc_r50_tile_train_tile_infer/",
+    "checkpoint": {
+      "interval": 1,
+      "save_begin": 1,
+      "save_last": true,
+      "max_keep_ckpts": -1,
+      "save_best": null
+    }
+  }
+}

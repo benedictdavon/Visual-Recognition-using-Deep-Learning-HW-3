@@ -1,0 +1,13 @@
+{
+  "dataset": {
+    "train_coco_json": "data/interim/converted/instances_train.json",
+    "test_image_info_json": "data/interim/converted/image_info_test_release.json",
+    "folds_json": "data/interim/folds/folds_5.json",
+    "train_image_root": "data/train",
+    "test_image_root": "data/test_release",
+    "dev_fold_index": 0,
+    "classes": ["class1", "class2", "class3", "class4"],
+    "image_color_type": "color",
+    "drop_constant_alpha_channel": true
+  }
+}

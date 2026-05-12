@@ -1,0 +1,24 @@
+{
+  "_base_": [
+    "./exp020_mmdet_cascade_maskrcnn_r50_tile_train_tile_infer.yaml"
+  ],
+  "experiment": {
+    "id": "EXP-031",
+    "name": "exp021_cascade_r50_tile_merge_score_refine"
+  },
+  "runtime": {
+    "work_dir": "outputs/runs/exp021_cascade_r50_tile_merge_score_refine/"
+  },
+  "inference": {
+    "postprocess": {
+      "tile_merge": {
+        "method": "standard_nms",
+        "min_mask_area": null,
+        "mask_score_refine": {
+          "enabled": false,
+          "alpha": 1.0
+        }
+      }
+    }
+  }
+}

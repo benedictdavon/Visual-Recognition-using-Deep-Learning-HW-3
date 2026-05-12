@@ -1,0 +1,94 @@
+{
+  "_base_": [
+    "../base/dataset.yaml",
+    "../base/runtime.yaml"
+  ],
+  "ensemble": {
+    "name": "ens005_ens003_hflip_tta_wbf",
+    "method": "wbf_or_cluster_nms",
+    "class_aware": true,
+    "iou_thr_values": [0.6],
+    "skip_box_thr": 0.03,
+    "final_max_per_img": 1000,
+    "min_votes": 1,
+    "keep_mask": "highest_score"
+  },
+  "members": [
+    {
+      "name": "exp020_cascade_epoch8_orig",
+      "experiment": "configs/experiments/exp020_mmdet_cascade_maskrcnn_r50_tile_train_tile_infer.yaml",
+      "checkpoint": "outputs/runs/exp020_cascade_maskrcnn_r50_tile_train_tile_infer/epoch_8.pth",
+      "weight": 1.0,
+      "prediction_tag": "exp020e8",
+      "cached_predictions": {
+        "val": "outputs/runs/exp020_cascade_maskrcnn_r50_tile_train_tile_infer/val_predictions_score0p03_max1000_nms0p5_tile768x768_ov0p25_exp020e8.segm.json",
+        "test": "outputs/runs/exp020_cascade_maskrcnn_r50_tile_train_tile_infer/test_release_predictions_score0p03_max1000_nms0p5_tile768x768_ov0p25_exp020e8.segm.json"
+      }
+    },
+    {
+      "name": "exp020_cascade_epoch8_hflip",
+      "experiment": "configs/experiments/exp020_mmdet_cascade_maskrcnn_r50_tile_train_tile_infer.yaml",
+      "checkpoint": "outputs/runs/exp020_cascade_maskrcnn_r50_tile_train_tile_infer/epoch_8.pth",
+      "weight": 1.0,
+      "prediction_tag": "exp020e8_hflip",
+      "cached_predictions": {
+        "val": "outputs/runs/exp020_cascade_maskrcnn_r50_tile_train_tile_infer/val_predictions_score0p03_max1000_nms0p5_tile768x768_ov0p25_exp020e8_hflip.segm.json",
+        "test": "outputs/runs/exp020_cascade_maskrcnn_r50_tile_train_tile_infer/test_release_predictions_score0p03_max1000_nms0p5_tile768x768_ov0p25_exp020e8_hflip.segm.json"
+      }
+    },
+    {
+      "name": "exp015_maskrcnn_epoch21_orig",
+      "experiment": "configs/experiments/exp015_mmdet_maskrcnn_r50_tiled_train_tile_infer.yaml",
+      "checkpoint": "outputs/runs/exp015_r50_tiled_training_tile_inference/best_coco_segm_mAP_50_epoch_21.pth",
+      "weight": 1.0,
+      "prediction_tag": "exp015e21",
+      "cached_predictions": {
+        "val": "outputs/runs/exp015_r50_tiled_training_tile_inference/val_predictions_score0p03_max1000_nms0p5_tile768x768_ov0p25_exp015e21.segm.json",
+        "test": "outputs/runs/exp015_r50_tiled_training_tile_inference/test_release_predictions_score0p03_max1000_nms0p5_tile768x768_ov0p25_exp015e21.segm.json"
+      }
+    },
+    {
+      "name": "exp015_maskrcnn_epoch21_hflip",
+      "experiment": "configs/experiments/exp015_mmdet_maskrcnn_r50_tiled_train_tile_infer.yaml",
+      "checkpoint": "outputs/runs/exp015_r50_tiled_training_tile_inference/best_coco_segm_mAP_50_epoch_21.pth",
+      "weight": 1.0,
+      "prediction_tag": "exp015e21_hflip",
+      "cached_predictions": {
+        "val": "outputs/runs/exp015_r50_tiled_training_tile_inference/val_predictions_score0p03_max1000_nms0p5_tile768x768_ov0p25_exp015e21_hflip.segm.json",
+        "test": "outputs/runs/exp015_r50_tiled_training_tile_inference/test_release_predictions_score0p03_max1000_nms0p5_tile768x768_ov0p25_exp015e21_hflip.segm.json"
+      }
+    },
+    {
+      "name": "exp023a_ema_epoch10_orig",
+      "experiment": "configs/experiments/exp023a_mmdet_cascade_r50_single_ema_tile_pipeline.yaml",
+      "checkpoint": "outputs/runs/exp023a_cascade_r50_single_ema_tile_pipeline/epoch_10.pth",
+      "weight": 0.75,
+      "prediction_tag": "exp023ae10",
+      "cached_predictions": {
+        "val": "outputs/runs/exp023a_cascade_r50_single_ema_tile_pipeline/val_predictions_score0p03_max1000_nms0p5_tile768x768_ov0p25_exp023ae10.segm.json",
+        "test": "outputs/runs/exp023a_cascade_r50_single_ema_tile_pipeline/test_release_predictions_score0p03_max1000_nms0p5_tile768x768_ov0p25_exp023ae10.segm.json"
+      }
+    },
+    {
+      "name": "exp023a_ema_epoch10_hflip",
+      "experiment": "configs/experiments/exp023a_mmdet_cascade_r50_single_ema_tile_pipeline.yaml",
+      "checkpoint": "outputs/runs/exp023a_cascade_r50_single_ema_tile_pipeline/epoch_10.pth",
+      "weight": 0.75,
+      "prediction_tag": "exp023ae10_hflip",
+      "cached_predictions": {
+        "val": "outputs/runs/exp023a_cascade_r50_single_ema_tile_pipeline/val_predictions_score0p03_max1000_nms0p5_tile768x768_ov0p25_exp023ae10_hflip.segm.json",
+        "test": "outputs/runs/exp023a_cascade_r50_single_ema_tile_pipeline/test_release_predictions_score0p03_max1000_nms0p5_tile768x768_ov0p25_exp023ae10_hflip.segm.json"
+      }
+    }
+  ],
+  "runtime": {
+    "work_dir": "outputs/runs/ensembles/ens005_ens003_hflip_tta_wbf"
+  },
+  "inference": {
+    "tile_size": 768,
+    "tile_overlap": 0.25,
+    "score_thr": 0.03,
+    "max_per_img": 1000,
+    "nms_iou_threshold": 0.5
+  }
+}
